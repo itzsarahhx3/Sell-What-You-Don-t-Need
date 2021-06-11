@@ -5,7 +5,8 @@ import {
     StyleSheet,
     Platform,
     Modal,
-    Button
+    Button,
+    FlatList
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
@@ -15,12 +16,13 @@ import AppText from "./AppText";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 import Screen from "./Screen";
+import PickerItem from "./PickerItem";
 
 /**
  * React, can only return single componenet, not multiple
  * so need react.Fragment -> same as <>
  */
-function AppPicker({ icon, placeholder, ...otherProps }) {
+function AppPicker({ icon, items, placeholder, onSelectItem, selectedItem }) {
     const [modalVisible, setModalVisible] = useState(false);
 
     return (
@@ -35,7 +37,9 @@ function AppPicker({ icon, placeholder, ...otherProps }) {
                             style={styles.icon}
                         />
                     )}
-                    <AppText style={styles.text}>{placeholder}</AppText>
+                    <AppText style={styles.text}>
+                        {selectedItem ? selectedItem.label : placeholder}
+                    </AppText>
                     <MaterialCommunityIcons
                         name="chevron-down"
                         size={20}
@@ -48,6 +52,19 @@ function AppPicker({ icon, placeholder, ...otherProps }) {
                     <Button
                         title="Close"
                         onPress={() => setModalVisible(false)}
+                    />
+                    <FlatList
+                        data={items}
+                        keyExtractor={(item) => item.value.toString()}
+                        renderItem={({ item }) => (
+                            <PickerItem
+                                label={item.label}
+                                onPress={() => {
+                                    setModalVisible(false);
+                                    onSelectItem(item);
+                                }}
+                            />
+                        )}
                     />
                 </Screen>
             </Modal>
