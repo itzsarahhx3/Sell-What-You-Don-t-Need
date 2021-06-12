@@ -17,45 +17,41 @@ import AccountScreen from "./app/screens/AccountScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
 import AppTextInput from "./app/components/AppTextInput";
 import AppPicker from "./app/components/AppPicker";
-
-const categories = [
-    {
-        label: "Furniture",
-        value: 1
-    },
-    {
-        label: "Clothing",
-        value: 2
-    },
-    {
-        label: "Cameras",
-        value: 3
-    }
-];
+import LoginScreen from "./app/screens/LoginScreen";
+import ListingEditScreen from "./app/screens/ListingEditScreen";
 
 export default function App() {
-    const [category, setCategory] = useState(categories[0]);
-
-    return (
-        <Screen>
-            <AppPicker
-                icon="apps"
-                items={categories}
-                placeholder="Category"
-                selectedItem={category}
-                onSelectItem={(item) => setCategory(item)}
-            />
-            <AppTextInput icon="email" placeholder="Email" />
-        </Screen>
-    );
+    return <ListingEditScreen />;
 }
 
-// will log the error, better to do in this way
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        justifyContent: "center",
-        alignItems: "center"
-    }
-});
+/**
+ * Testing codes for AppPicker
+ */
+
+// const categories = [
+//     {
+//         label: "Furniture",
+//         value: 1
+//     },
+//     {
+//         label: "Clothing",
+//         value: 2
+//     },
+//     {
+//         label: "Cameras",
+//         value: 3
+//     }
+// ];
+
+// const [category, setCategory] = useState(categories[0]);
+
+// <Screen>
+//     <AppPicker
+//         icon="apps"
+//         items={categories}
+//         placeholder="Category"
+//         selectedItem={category}
+//         onSelectItem={(item) => setCategory(item)}
+//         />
+//     <AppTextInput icon="email" placeholder="Email" />
+// </Screen>
