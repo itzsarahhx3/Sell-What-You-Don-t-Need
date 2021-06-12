@@ -4,13 +4,20 @@ import { useFormikContext } from "formik"; // react-context
 import AppTextInput from "../AppTextInput";
 import ErrorMessage from "./ErrorMessage";
 
-function AppFormField({ name, ...otherProps }) {
-    const { handleChange, handleSubmit, errors, setFieldTouched, touched } =
+/**
+ * useFormikContext:
+ * retrieve props from parent and pass here as state props
+ * act like React Hook
+ */
+function AppFormField({ name, width, ...otherProps }) {
+    const { handleChange, errors, setFieldTouched, touched } =
         useFormikContext();
 
     return (
         <>
             <AppTextInput
+                // props below passed to AppTextInput
+                // name="email"
                 // placeholder="Email"
                 // icon="email"
                 // autoCapitalize="none"
@@ -20,6 +27,7 @@ function AppFormField({ name, ...otherProps }) {
                 // takes the initial values
                 onChangeText={handleChange(name)}
                 onBlur={() => setFieldTouched(name)}
+                width={width}
                 {...otherProps}
             />
             <ErrorMessage error={errors[name]} visible={touched[name]} />

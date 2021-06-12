@@ -14,13 +14,22 @@ import PickerItem from "./PickerItem";
  * React, can only return single componenet, not multiple
  * so need react.Fragment -> same as <>
  */
-function AppPicker({ icon, items, placeholder, onSelectItem, selectedItem }) {
+function AppPicker({
+    icon,
+    items,
+    placeholder,
+    onSelectItem,
+    selectedItem,
+    width = "100%",
+    PickerItemComponent = PickerItem,
+    numberOfColumns = 1
+}) {
     const [modalVisible, setModalVisible] = useState(false);
 
     return (
-        <React.Fragment>
+        <>
             <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-                <View style={styles.container}>
+                <View style={[styles.container, { width }]}>
                     {icon && (
                         <MaterialCommunityIcons
                             name={icon}
@@ -56,8 +65,10 @@ function AppPicker({ icon, items, placeholder, onSelectItem, selectedItem }) {
                     <FlatList
                         data={items}
                         keyExtractor={(item) => item.value.toString()}
+                        numColumns={numberOfColumns}
                         renderItem={({ item }) => (
-                            <PickerItem
+                            <PickerItemComponent
+                                item={item}
                                 label={item.label}
                                 onPress={() => {
                                     setModalVisible(false);
@@ -68,7 +79,7 @@ function AppPicker({ icon, items, placeholder, onSelectItem, selectedItem }) {
                     />
                 </Screen>
             </Modal>
-        </React.Fragment>
+        </>
     );
 }
 
@@ -78,7 +89,6 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         // material Icon & text lays out horizontally
         flexDirection: "row",
-        width: "100%",
         padding: 15,
         // separate multiple input in same screen
         marginVertical: 10

@@ -30,6 +30,7 @@ function LoginScreen(props) {
                 {/* this returns JSX */}
                 {
                     <>
+                        {/* AppFormField takes over the function */}
                         <AppFormField
                             name="email"
                             placeholder="Email"

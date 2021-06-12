@@ -6,7 +6,8 @@ function Screen({ children, style }) {
     return (
         <SafeAreaView style={[styles.screen, style]}>
             {/* use the style from Card */}
-            <View style={style}>{children}</View>
+            {/* 2nd style is the style passed from outside */}
+            <View style={[styles.view, style]}>{children}</View>
         </SafeAreaView>
     );
 }
@@ -14,6 +15,9 @@ function Screen({ children, style }) {
 const styles = StyleSheet.create({
     screen: {
         paddingTop: Constants.statusBarHeight,
+        flex: 1
+    },
+    view: {
         flex: 1
     }
 });

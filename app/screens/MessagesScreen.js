@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
-import ListItem from "../components/ListItem";
-
 // tell you info of the device
 import Constants from "expo-constants";
-import ListItemSeparator from "../components/ListItemSeparator";
-import ListItemDeleteAction from "../components/ListItemDeleteAction";
+
+import ListItem from "../components/lists/ListItem";
+import ListItemSeparator from "../components/lists/ListItemSeparator";
+import ListItemDeleteAction from "../components/lists/ListItemDeleteAction";
 import Screen from "../components/Screen";
 
 const initialMessages = [
     {
         id: 1,
-        title: "T1",
-        description: "D1",
+        title: "#1 Message, this is a long long text here",
+        description:
+            "what is the price what is the shipping what if this line is really long",
         image: require("../assets/mosh.jpg")
     },
     {
